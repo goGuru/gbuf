@@ -3,12 +3,13 @@
 #include <string>
 #include <iostream>
 
+using namespace go;
+
 struct mystruct {
 	std::vector<int> a;
 };
 
-
-gbuf::gbuf<mystruct> testBuf(10);
+gbuf<mystruct> testBuf(10);
 
 void reader() {
 
@@ -17,7 +18,7 @@ void reader() {
 
 		int rSize = testBuf.read(tmp_read);
 
-		if (rSize == gbuf::EMPTY_BUF) {
+		if (rSize == BUF_EMPTY) {
 			std::cout << "Buffer is empty" << std::endl;
 			break;
 		}
@@ -31,7 +32,6 @@ void reader() {
 		std::cout << std::endl;
 
 	}
-
 }
 
 void writer() {
@@ -42,13 +42,12 @@ void writer() {
 
 		int wSize = testBuf.write(tmp_data);
 
-		if (wSize == gbuf::FULL_BUF) {
+		if (wSize == BUF_FULL) {
 			std::cout << "Buffer is full" << std::endl;
 			break;
 		}
 
 		std::cout << wSize << " byte data was written to buffer." << std::endl;
-
 		tmp_data.a.push_back(i);
 	}
 }
