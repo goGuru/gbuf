@@ -1,0 +1,9 @@
+CC = msbuild INSTALL.vcxproj /p:Configuration=Release
+
+all:
+	if exist build ( echo build exists ) else ( mkdir build && echo build created)
+	cd build && cmake .. && $(CC)
+
+clean:
+	if exist build ( rmdir /s /q build )
+	if exist lib ( rmdir /s /q lib )
